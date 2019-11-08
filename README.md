@@ -10,9 +10,11 @@ Download the .CSV of 2017 election results by constituency from the
 Import the file into a SQL database, locally or wherever you use mySQL/ PostgreSQL.
 [This article](https://medium.com/@AviGoom/how-to-import-a-csv-file-into-a-mysql-database-ef8860878a68) has suggestions on how to do it in MySQL Workbench, phpMyAdmin or (recommended) from the mySQL command line.
 
-TLDR; Modify this command to suit the import type of the file.
+TLDR; 
+Modify this command to suit the shape of the file we're importing.
 ```
-mysql> LOAD DATA LOCAL INFILE '/Users/miguelgomez/Desktop/mock_data.csv' 
+mysql> 
+LOAD DATA LOCAL INFILE '/Users/miguelgomez/Desktop/mock_data.csv' 
 INTO TABLE users 
 FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n' 
 IGNORE 1 ROWS 

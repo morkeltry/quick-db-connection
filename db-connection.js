@@ -5,14 +5,15 @@ externalip(function (err, ip) {
   console.log(ip); // => 8.8.8.8
 }); // It might be that the IP address of the Replit is blocked, if this is the case then they should get the IP and we can whitelist it.
 
-var con = mysql.createConnection({
+const casperDb = {
   host: "35.189.121.127",
   user: "D0002",
   password: "password569206",
   database: "cards"
-});
+};
 // the connection data
 
+var con = mysql.createConnection(casperDb);
 
 con.connect(function(err) {
   if (err) throw err;

@@ -1,0 +1,23 @@
+{
+  "name": "quick-db-connection",
+  "version": "1.0.0",
+  "description": "### Access this page at [https://bit.ly/2O4rHab](https://bit.ly/2O4rHab)",
+  "main": "db-connection.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/morkeltry/quick-db-connection.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/morkeltry/quick-db-connection/issues"
+  },
+  "homepage": "https://github.com/morkeltry/quick-db-connection#readme",
+  "dependencies": {
+    "mysql": "^2.17.1",
+    "node-postcodes.io": "^1.0.0"
+  }
+}

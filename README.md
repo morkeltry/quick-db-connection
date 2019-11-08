@@ -31,7 +31,8 @@ NB - it is legal to register to vote in multiple locations, but you are allowed 
 
 We will use Node.JS and the `node-postcodes.io` [NPM package](https://www.npmjs.com/package/node-postcodes.io),  which gets lots of useful information from the free API from the helpful folks at [postcodes.io](postcodes.io), so:
 
-Create a directory for your server, do `npm --init` and `npm i node-postcodes.io`.
+Create a directory for your server, do `npm init` and `npm i node-postcodes.io`.
+Alternatively, clone this repo, enter the directory and run `npm i` to install all packages at once.
 
 The [node-postcodes.io package](https://www.npmjs.com/package/node-postcodes.io) is really user-friendly and you won't need to read more than the first few lines of the welcome page to use it.
 

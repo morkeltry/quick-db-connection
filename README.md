@@ -29,7 +29,21 @@ We will be coding up an app to show students registered to vote in two different
 
 NB - it is legal to register to vote in multiple locations, but you are allowed to actually vote only in one.
 
-We will use Node.JS and the `node-postcodes.io` [NPM package](https://www.npmjs.com/package/node-postcodes.io),  which gets lots of useful information from the free API from the helpful folks at [postcodes.io](postcodes.io) .
+We will use Node.JS and the `node-postcodes.io` [NPM package](https://www.npmjs.com/package/node-postcodes.io),  which gets lots of useful information from the free API from the helpful folks at [postcodes.io](postcodes.io), so:
+
+Create a directory for your server, do `npm --init` and `npm i node-postcodes.io`.
+
+The [node-postcodes.io package](https://www.npmjs.com/package/node-postcodes.io) is really user-friendly and you won't need to read more than the first few lines of the welcome page to use it.
+
+If you want to output the result of a lookup in your local Node REPL before making a runnable .js file, you'll need to modify the provided command a little:
+```
+result postcodes.lookup('PO123AA')
+```
+wait a few milliseconds
+```
+console.log(result)
+```
+-or just use the commands as provided in the code of your .js file.
 
 We can develop and run this Node app locally, and connect it to a SQL database which is either local or remote (depending on how you set yours up). Once it's working, you can deploy your whole app to your DigitalOcean or GCP servers.
 

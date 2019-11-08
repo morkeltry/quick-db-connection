@@ -15,6 +15,8 @@ const casperDb = {
 
 var con = mysql.createConnection(casperDb);
 
+var allCardsQuery = 'select pip, suit from cards';
+
 con.connect(function(err) {
   if (err) throw err;
   console.log("Connected!");
@@ -22,12 +24,10 @@ con.connect(function(err) {
 //  let x = parseInt(Math.ceil(Math.random()*52))
 //  let sql = 'select pip,suit from cards where id ='+x;
 //uncomment below to get all cards
- let sql = 'select pip, suit from cards'
-  con.query(sql, function (err, result) {
+  con.query(allCardsQuery, function (err, result) {
     if (err) throw err;
     if (result) {processData(result)};
   });
-
 });
 
 function processData(data) {

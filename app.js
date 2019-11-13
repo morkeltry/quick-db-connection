@@ -1,18 +1,27 @@
+const fs = require('fs');
 const express = require('express');
+var https = require('https');
 const cors = require('cors');
 const path = require('path');
-// const exphbs = require ('express-handlebars');
 
 const router = require('./api');
-// const helpers = require ('./views/helpers');
+let app = express();
 
-const app = express();
+const httpsOn = true;
+const PORT = process.env.PORT || 3000;
 
-app.set('port', process.env.PORT || 3000);
+app.set('port', PORT);
 
+app.use(cors());
 app.use(router);
-app.use(cors({
-  origin: '*'
-}));
+//   {
+//   origin: '*'
+// }));
 
-module.exports = app;
+if (httpsOn)
+  app = https.createServer({
+      key: fs.readFileSync('server.key'),
+      cert: fs.readFileSync('server.cert')
+    }, app) ;
+
+module.exports = { app, PORT };

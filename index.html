@@ -1,29 +1,56 @@
 <html>
   <head>
     <script>
-      function sendRequest (e) {
-        e.preventDefault();
+      // Modify this function to use do what you want with the response.
+      // Make sure you are receiving either text or JSON appropriately for your use case.
+      function useResponse (res) {
+          console.log ('This is where we use the response back from the API:', res);
+        }
+
+      // A messy way to grab some form data - See how you could improve this to make it more reliable for your form.
+      function getFormData (e) {
         var form = e.target.form;
-        var formdata = [form[1],form[2],form[3],form[4],form[5],form[6],form[7],form[8],form[9],form[1],form[10]]
+        var formdata = [form[1],form[2],form[3],form[4],form[5],form[6],form[7],form[8],form[9],form[10]]
           .filter (x=>x)
           .map (element => element.value)
-          .filter (x=>x)
+          .filter (x=>x) ;
+        return formdata ;
+      }
+
+      function sendRequest (e) {
+        // .preventDefault() stops the default behaviour of the browser, which for this event's element (a submit button),
+        // is to redirect to another page (We don't want that!)
+        e.preventDefault();
+        var formdata = getFormData (e);
         console.log (formdata);
 
-        let xhr = new XMLHttpRequest();
-        // modify as required
-        let paramsUrl = '/api'+formdata[1];
-        let query = formdata.join('&') ;
+        // You should modify the URL as required by your app.js routes and paramsUrl as required by your api.js functions.
+        const url = 'https://localhost:3000/api/'
+        let paramsUrl = url+formdata[1];
+        // If you wish, you could also use a querystring.
+        const query = formdata.join('&') ;
         let queryString = query ? '?'+query : '' ;
 
-        fetch(paramsUrl+queryString);
+        // responses arrive back as Response Objects - these have functions like .text() and .json() to strip out all but the data.
+        function convertHtmlResponseToText (res) {
+          return res.text();
+        }
+        function convertHtmlResponseToJson (res) {
+          return res.json();
+        }
+
+        // fetch returns a Promise, which means we can call .then() on the returned Promise and
+        // when that Promise does resolve (which is not immediate), .then() lets us
+        // use its contents once they have arrived (but, helpfully, doesn't try to use them before they have arrived).
+        fetch(paramsUrl+queryString)
+          .then (convertHtmlResponseToText)
+          .then (useResponse);
 
       }
     </script>
   </head>
 
-    <body>
-
+  <body>
 
     <form class="pure-form pure-form-stacked">
         <fieldset>
@@ -52,10 +79,10 @@
     </form>
 
     <script>
+      // Once the HTML has loaded, we attach the function sendRequest (declared earlier) to run when the button with id="submit" is clicked.
       window.onload = function () {
         var goButton = document.getElementById ('submit');
         goButton.onclick = sendRequest;
-
       }
     </script>
 

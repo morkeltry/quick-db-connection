@@ -1,5 +1,5 @@
-const app = require('./app');
+const { app, PORT } = require('./app');
 
-app.listen(app.get('port'), () => {
-  console.log('App running on port', app.get('port'));
+app.listen(PORT, () => {
+  console.log('App running on port', PORT);
 });

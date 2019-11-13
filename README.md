@@ -31,9 +31,6 @@ NB - it is legal to register to vote in multiple locations, but you are allowed 
 
 We will use Node.JS and the `node-postcodes.io` [NPM package](https://www.npmjs.com/package/node-postcodes.io),  which gets lots of useful information from the free API from the helpful folks at [postcodes.io](postcodes.io), so:
 
-Create a directory for your server, do `npm init` and `npm i node-postcodes.io`.
-Alternatively, clone this repo, enter the directory and run `npm i` to install all packages at once.
-
 The [node-postcodes.io package](https://www.npmjs.com/package/node-postcodes.io) is really user-friendly and you won't need to read more than the first few lines of the welcome page to use it.
 
 If you want to output the result of a lookup in your local Node REPL before making a runnable .js file, you'll need to modify the provided command a little:
@@ -48,14 +45,21 @@ console.log(result)
 
 We can develop and run this Node app locally, and connect it to a SQL database which is either local or remote (depending on how you set yours up). Once it's working, you can deploy your whole app to your DigitalOcean or GCP servers.
 
+### Before you start
+
+Clone this repo, enter the directory and run `npm i` to install all packages at once.
+
 ### Running locally
-This app uses a local server to receive the form data, and the conneciton is over HTTPS (secure HTTP) to avoid CORS (Cross Origin Request Sharing) errors.
+This app uses a local server to receive the form data, and the connection is over HTTPS (secure HTTP) to avoid CORS (Cross Origin Request Sharing) errors. We can run the server with `npm run start` (You can see in `package.json` which file the `start` script actually runs)
 
 But that means that we need an HTTPS certificate. This is included in the repo, but is 'self-signed' (I generated it by running `openssl req -nodes -new -x509 -keyout server.key -out server.cert`), so you will need to authorise your browser to accept it if the console shows a *Network Error* after you submit.
 
 ##### TLDR;
+
 Navigate to `https://localhost:3000/`
 When you get the yellow bordered warning page, click Advanced. You will see that the exact error is
 `MOZILLA_PKIX_ERROR_SELF_SIGNED_CERT`
 Accept the certificate and continue.
 Now browse to `file:///` and navigate to `index.html` in the directory that you cloned the repo.
+
+You can make a test query to the database with `npm run db-test`.

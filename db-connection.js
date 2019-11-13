@@ -11,43 +11,63 @@ const casperDb = {
   password: "password569206",
   database: "cards"
 };
+
+const tomDb = {
+  host: "35.197.226.46",
+  user: "usermcuserface",
+  password: "faceface",
+  database: "freepizza"
+}
 // the connection data
 
-var con = mysql.createConnection(casperDb);
+// var con = mysql.createConnection(casperDb);
 
-var allCardsQuery = 'select pip, suit from cards';
+  var con = mysql.createConnection(tomDb);
 
-con.connect(function(err) {
-  if (err) throw err;
-  console.log("Connected!");
-//comment out below to get all cards
-//  let x = parseInt(Math.ceil(Math.random()*52))
-//  let sql = 'select pip,suit from cards where id ='+x;
-//uncomment below to get all cards
-  con.query(allCardsQuery, function (err, result) {
+  var allCardsQuery = 'select pip, suit from cards';
+  var pizzaQuery = 'select * from howmuchpizza;';
+
+
+  con.connect(function(err) {
     if (err) throw err;
-    if (result) {processData(result)};
+    console.log("Connected!");
+
   });
-});
 
-function processData(data) {
-  let i = 0;
-  let cards = [];
-  for (row of data) { //loops through data
-   cards.push(row.pip+row.suit) //pushes cards to cards array
-    // for (key of Object.keys(row)) {
-    //   console.log(key+ " : "+row[key])
-    // }
-  i++;
+
+function doQuery(query) {
+  //comment out below to get all cards
+  //  let x = parseInt(Math.ceil(Math.random()*52))
+  //  let sql = 'select pip,suit from cards where id ='+x;
+  //uncomment below to get all cards
+    con.query(query, function (err, result) {
+      if (err) throw err;
+      if (result) {console.log(result)};
+    });
+  };
+
+  function processData(data) {
+    let i = 0;
+    let cards = [];
+    for (row of data) { //loops through data
+     cards.push(row.pip+row.suit) //pushes cards to cards array
+      // for (key of Object.keys(row)) {
+      //   console.log(key+ " : "+row[key])
+      // }
+    i++;
+    }
+    callMe(cards) // calls function with cards array
   }
-  callMe(cards) // calls function with cards array
-}
 
 
- function callMe(cards) {
-   //uncomment out this to get all cards
-    console.log(cards)
-   //comment out the below for all cards
-   let i=0
-   //console.log(cards[i])
- }
+   function callMe(cards) {
+     //uncomment out this to get all cards
+      console.log(cards)
+     //comment out the below for all cards
+     let i=0
+     //console.log(cards[i])
+   }
+
+   doQuery(pizzaQuery);
+
+   module.exports = { doQuery }

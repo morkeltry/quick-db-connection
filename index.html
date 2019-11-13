@@ -1,0 +1,54 @@
+<html>
+  <head>
+    <script>
+      function sendRequest (e) {
+        e.preventDefault();
+        var form = e.target.form;
+        var formdata = [form[1],form[2],form[3],form[4],form[5],form[6],form[7],form[8],form[9],form[1],form[10]]
+          .filter (x=>x)
+          .map (element => element.value)
+          .filter (x=>x)
+        console.log (formdata);
+      }
+    </script>
+  </head>
+
+    <body>
+
+
+    <form class="pure-form pure-form-stacked">
+        <fieldset>
+            <legend>A Form</legend>
+
+            <label for="email">Email</label>
+            <input id="email" type="email" placeholder="Email">
+            <span class="pure-form-message">This is a required field.</span>
+
+            <label for="password">Password</label>
+            <input id="password" type="password" placeholder="Password">
+
+            <label for="consent">You can spam my email</label>
+            <select id="consent">
+                <option>Yes</option>
+                <option>Certainly</option>
+                <option>Ask me repeatedly</option>
+            </select>
+
+            <label for="remember" class="pure-checkbox">
+                <input id="remember" type="checkbox"> Remember me
+            </label>
+
+            <button id="submit" type="submit" class="pure-button pure-button-primary">Sign in</button>
+        </fieldset>
+    </form>
+
+    <script>
+      window.onload = function () {
+        var goButton = document.getElementById ('submit');
+        goButton.onclick = sendRequest;
+
+      }
+    </script>
+
+  </body>
+</html>

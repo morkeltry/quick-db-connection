@@ -47,3 +47,14 @@ console.log(result)
 -or just use the commands as provided in the code of your .js file.
 
 We can develop and run this Node app locally, and connect it to a SQL database which is either local or remote (depending on how you set yours up). Once it's working, you can deploy your whole app to your DigitalOcean or GCP servers.
+
+### Running locally
+This app uses a local server to receive the form data, and the conneciton is over HTTPS (secure HTTP) to avoid CORS (Cross Origin Request Sharing) errors.
+But that means that we need an HTTPS certificate. This is included in the repo, but is 'self-signed' (I generated i tby running `openssl req -nodes -new -x509 -keyout server.key -out server.cert`), so you will need to authorise your browser to accept it if the console shows a Network Error after you submit.
+
+##### TLDR;
+Navigate to `https://localhost:3000/`
+When you get the yellow bordered warning page, click Advanced. You will see that the exact error is
+`MOZILLA_PKIX_ERROR_SELF_SIGNED_CERT`
+Accept the certificate and continue.
+Now browse to `file:///` and navigate to `index.html` in the directory that you cloned the repo.

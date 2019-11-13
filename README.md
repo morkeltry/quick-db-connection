@@ -50,7 +50,8 @@ We can develop and run this Node app locally, and connect it to a SQL database w
 
 ### Running locally
 This app uses a local server to receive the form data, and the conneciton is over HTTPS (secure HTTP) to avoid CORS (Cross Origin Request Sharing) errors.
-But that means that we need an HTTPS certificate. This is included in the repo, but is 'self-signed' (I generated i tby running `openssl req -nodes -new -x509 -keyout server.key -out server.cert`), so you will need to authorise your browser to accept it if the console shows a Network Error after you submit.
+
+But that means that we need an HTTPS certificate. This is included in the repo, but is 'self-signed' (I generated it by running `openssl req -nodes -new -x509 -keyout server.key -out server.cert`), so you will need to authorise your browser to accept it if the console shows a *Network Error* after you submit.
 
 ##### TLDR;
 Navigate to `https://localhost:3000/`

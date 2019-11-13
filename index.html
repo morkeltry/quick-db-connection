@@ -9,6 +9,15 @@
           .map (element => element.value)
           .filter (x=>x)
         console.log (formdata);
+
+        let xhr = new XMLHttpRequest();
+        // modify as required
+        let paramsUrl = '/api'+formdata[1];
+        let query = formdata.join('&') ;
+        let queryString = query ? '?'+query : '' ;
+
+        fetch(paramsUrl+queryString);
+
       }
     </script>
   </head>
